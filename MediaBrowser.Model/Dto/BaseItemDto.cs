@@ -27,6 +27,8 @@ namespace MediaBrowser.Model.Dto
 
         public string OriginalTitle { get; set; }
 
+        public string PreferredName { get; set; }
+
         /// <summary>
         /// Gets or sets the server identifier.
         /// </summary>
@@ -338,6 +340,8 @@ namespace MediaBrowser.Model.Dto
         /// </summary>
         /// <value>The name of the series.</value>
         public string SeriesName { get; set; }
+
+        public string PreferredSeriesName { get; set; }
 
         /// <summary>
         /// Gets or sets the series id.

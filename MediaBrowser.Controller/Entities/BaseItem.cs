@@ -550,6 +550,28 @@ namespace MediaBrowser.Controller.Entities
             }
         }
 
+        [JsonIgnore]
+        public string PreferredName
+        {
+            get
+            {
+                if (OverridePreferredName)
+                {
+                    return Name;
+                }
+
+                if (LibraryManager.GetLibraryOptions(this).PreferOriginalTitles)
+                {
+                    return OriginalTitle;
+                }
+
+                return Name;
+            }
+        }
+
+        [JsonIgnore]
+        public bool OverridePreferredName { get; set; }
+
         /// <summary>
         /// Gets or sets the date that the item first debuted. For movies this could be premiere date, episodes would be first aired.
         /// </summary>

@@ -1638,7 +1638,7 @@ namespace Emby.Server.Implementations.Data
                 index++;
             }
 
-            if (HasField(query, ItemFields.OriginalTitle))
+            if (HasField(query, ItemFields.OriginalTitle) || HasField(query, ItemFields.PreferredName))
             {
                 if (reader.TryGetString(index++, out var originalTitle))
                 {
@@ -2061,6 +2061,7 @@ namespace Emby.Server.Implementations.Data
                 case ItemFields.ProductionLocations:
                 case ItemFields.Settings:
                 case ItemFields.OriginalTitle:
+                case ItemFields.PreferredName:
                 case ItemFields.Taglines:
                 case ItemFields.SortName:
                 case ItemFields.Studios:
@@ -2206,6 +2207,13 @@ namespace Emby.Server.Implementations.Data
                             break;
                         case ItemFields.IsHD:
                             // do nothing
+                            break;
+                        case ItemFields.OriginalTitle:
+                            if (!HasField(query, ItemFields.PreferredName))
+                            {
+                                columns.Remove("OriginalTitle");
+                            }
+
                             break;
                         default:
                             columns.Remove(field.ToString());

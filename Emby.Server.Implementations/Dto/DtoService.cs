@@ -228,6 +228,23 @@ namespace Emby.Server.Implementations.Dto
                 AttachStudios(dto, item);
             }
 
+            if (options.ContainsField(ItemFields.PreferredName))
+            {
+                if (user?.OverridePreferredName == true)
+                {
+                    dto.PreferredName = item.Name;
+
+                    if (item is Episode episode)
+                    {
+                        dto.PreferredSeriesName = episode.SeriesName;
+                    }
+                }
+                else
+                {
+                    dto.PreferredName = item.PreferredName;
+                }
+            }
+
             AttachBasicFields(dto, item, owner, options);
 
             if (options.ContainsField(ItemFields.CanDelete))
@@ -1126,6 +1143,11 @@ namespace Emby.Server.Implementations.Dto
             {
                 dto.IndexNumberEnd = episode.IndexNumberEnd;
                 dto.SeriesName = episode.SeriesName;
+
+                if (options.ContainsField(ItemFields.PreferredName))
+                {
+                    dto.PreferredSeriesName = episode.PreferredSeriesName;
+                }
 
                 if (options.ContainsField(ItemFields.SpecialEpisodeNumbers))
                 {

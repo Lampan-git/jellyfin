@@ -112,6 +112,20 @@ namespace MediaBrowser.Controller.Entities.TV
         public string SeasonName { get; set; }
 
         [JsonIgnore]
+        public string PreferredSeriesName
+        {
+            get
+            {
+                if (this.PreferredName == this.OriginalTitle)
+                {
+                    return this.Series.OriginalTitle;
+                }
+
+                return SeriesName;
+            }
+        }
+
+        [JsonIgnore]
         public override bool SupportsRemoteImageDownloading
         {
             get

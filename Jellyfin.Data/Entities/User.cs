@@ -52,6 +52,7 @@ namespace Jellyfin.Data.Entities
             MustUpdatePassword = false;
             DisplayMissingEpisodes = false;
             DisplayCollectionsView = false;
+            OverridePreferredName = false;
             HidePlayedInLatest = true;
             RememberAudioSelections = true;
             RememberSubtitleSelections = true;
@@ -198,6 +199,11 @@ namespace Jellyfin.Data.Entities
         /// Required.
         /// </remarks>
         public bool DisplayCollectionsView { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to override preferred name selection.
+        /// </summary>
+        public bool OverridePreferredName { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether the user has a local password.
