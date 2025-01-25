@@ -15,7 +15,7 @@ namespace Jellyfin.Server.Implementations.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "8.0.10");
+            modelBuilder.HasAnnotation("ProductVersion", "9.0.0");
 
             modelBuilder.Entity("Jellyfin.Data.Entities.AccessSchedule", b =>
                 {
@@ -255,6 +255,9 @@ namespace Jellyfin.Server.Implementations.Migrations
                         .HasColumnType("REAL");
 
                     b.Property<string>("OfficialRating")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("OriginalLanguage")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("OriginalTitle")
@@ -828,6 +831,9 @@ namespace Jellyfin.Server.Implementations.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<bool?>("IsInterlaced")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsOriginal")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("KeyFrames")
